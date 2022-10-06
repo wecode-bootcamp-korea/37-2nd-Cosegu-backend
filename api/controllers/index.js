@@ -1,5 +1,7 @@
 const coseguController = require('./coseguController');
+const userController = require('./userController');
 
 module.exports = {
-    coseguController
-}
+  coseguController,
+  userController,
+};

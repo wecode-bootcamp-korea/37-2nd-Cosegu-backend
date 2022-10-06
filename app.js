@@ -16,5 +16,5 @@ app.use(globalErrorHandler);
 const port = process.env.PORT;
 
 app.listen(port, () => {
-    console.log(`Listening to request on 127.0.0.1:${port}`)
+  console.log(`Listening to request on 127.0.0.1:${port}`);
 });

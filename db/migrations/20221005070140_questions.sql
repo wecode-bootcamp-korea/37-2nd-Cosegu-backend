@@ -3,7 +3,8 @@ CREATE TABLE questions(
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(2000) NOT NULL,
     content VARCHAR(3000) NOT NULL,
-    user_id INT NOT NULL,
+    file_url VARCHAR(1000), 
+    user_id VARCHAR(200) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
