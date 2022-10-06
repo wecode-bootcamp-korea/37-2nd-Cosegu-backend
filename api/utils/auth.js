@@ -12,7 +12,6 @@ const loginRequired = async (req, res, next) => {
   }
 
   const veryfiedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
-  console.log(veryfiedToken);
   const user = await userService.getUserById(veryfiedToken.id);
 
   if (!user) {
@@ -23,7 +22,6 @@ const loginRequired = async (req, res, next) => {
   }
 
   req.user = user;
-  console.log(req.user);
   next();
 };
 
