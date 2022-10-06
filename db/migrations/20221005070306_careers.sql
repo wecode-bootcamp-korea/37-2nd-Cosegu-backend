@@ -6,7 +6,7 @@ CREATE TABLE careers(
     position VARCHAR(200) NOT NULL,
     start_date DATE NOT NULL,
     end_date DATE NOT NULL,
-    type VARCHAR(200) NOT NULL,
+    work_type VARCHAR(200) NOT NULL,
     work VARCHAR(200) NOT NULL,
     user_id INT NOT NULL,
     PRIMARY KEY (id),
