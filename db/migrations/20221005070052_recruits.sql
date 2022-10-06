@@ -7,8 +7,10 @@ CREATE TABLE recruits(
     qualification VARCHAR(2000) NULL,
     preferential_treatment VARCHAR(2000) NULL,
     category_id INT NOT NULL,
+    company_id INT NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (category_id) REFERENCES categories (id)
+    FOREIGN KEY (category_id) REFERENCES categories (id),
+    FOREIGN KEY (company_id) REFERENCES companies (id)
 );
 
 -- migrate:down
