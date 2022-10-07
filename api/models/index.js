@@ -1,5 +1,5 @@
-const coseguDao = require('./coseguDao');
+const recruitDao = require('./recruitDao');
 
 module.exports = {
-    coseguDao
+    recruitDao
 }

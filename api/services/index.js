@@ -1,5 +1,5 @@
-const coseguService = require('./coseguService');
+const recruitService = require('./recruitService');
 
 module.exports = {
-    coseguService
+    recruitService
 }

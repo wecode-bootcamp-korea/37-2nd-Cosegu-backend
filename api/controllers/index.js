@@ -1,5 +1,5 @@
-const coseguController = require('./coseguController');
+const recruitController = require('./recruitController');
 
 module.exports = {
-    coseguController
+    recruitController
 }

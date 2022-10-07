@@ -1,8 +1,8 @@
 const express = require('express');
-const coseguRouter = require('./coseguRouter');
+const recruitRouter = require('./recruitRouter');
 
 const router = express.Router();
 
-router.use('/cosegu', coseguRouter);
+router.use('/recruit', recruitRouter);
 
 module.exports = router;
