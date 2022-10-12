@@ -1,7 +1,7 @@
-const coseguController = require('./coseguController');
+const recruitController = require('./recruitController');
 const userController = require('./userController');
 
 module.exports = {
-  coseguController,
-  userController,
+  recruitController,
+  userController
 };

@@ -1,7 +1,7 @@
-const coseguService = require('./coseguService');
+const recruitService = require('./recruitService');
 const userService = require('./userService');
 
 module.exports = {
-  coseguService,
-  userService,
+  recruitService,
+  userService
 };

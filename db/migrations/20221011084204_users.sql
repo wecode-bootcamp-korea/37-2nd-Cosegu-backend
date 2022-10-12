@@ -1,0 +1,11 @@
+-- migrate:up
+ALTER TABLE users
+ADD COLUMN naver_id VARCHAR(200) NOT NULL,
+ADD COLUMN email varchar(100) NOT NULL,
+ADD COLUMN mobile VARCHAR(100) NOT NULL,
+MODIFY COLUMN kakao_id VARCHAR(200) NULL,
+MODIFY COLUMN profile_image VARCHAR(2000) NULL,
+DROP COLUMN age;
+
+-- migrate:down
+DROP TABLE users;
