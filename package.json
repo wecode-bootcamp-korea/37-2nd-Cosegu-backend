@@ -20,7 +20,7 @@
   "homepage": "https://github.com/wecode-bootcamp-korea/37-2nd-Cosegu-backend#readme",
   "dependencies": {
     "aws-sdk": "^2.1231.0",
-    "axios": "^1.0.0",
+    "axios": "^1.1.2",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dbmate": "^1.0.3",
