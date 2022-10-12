@@ -23,7 +23,7 @@ const getRecruitByCategory = async(categoryId, limit, offset) => {
 }
 
 const getRecruitByTag = async(categoryId, tagName, limit, offset) => {
-    
+
     if (limit > 20) {
         const error = new Error('INVALID_REQUEST');
         error.statusCode = 400;
