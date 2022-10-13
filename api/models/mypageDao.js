@@ -19,7 +19,6 @@ const getInfo = async (id) => {
   `,
     [id]
   );
-  console.log(result);
   return result;
 };
 const getQuestion = async (id) => {
