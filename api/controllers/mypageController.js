@@ -9,5 +9,5 @@ const getMyPage = asyncWrap(async (req, res) => {
 });
 
 module.exports = {
-  getMyPage,
+  getMyPage
 };

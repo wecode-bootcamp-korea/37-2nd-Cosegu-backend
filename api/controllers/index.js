@@ -10,6 +10,7 @@ module.exports = {
   recruitController,
   userController,
   likesController,
+  mypageController,
   faqController,
   careerController,
   applyController,

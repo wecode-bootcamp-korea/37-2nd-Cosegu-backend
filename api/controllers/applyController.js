@@ -11,6 +11,7 @@ const getApplyment = asyncWrap(async(req, res) => {
 const addApplyment = asyncWrap(async(req, res) => {
     const userId = req.user.id;
     const {recruitId, careerId, forms} = req.body;
+    console.log(recruitId)
 
     if (!recruitId) {
         const error = new Error('KEY_ERROR');

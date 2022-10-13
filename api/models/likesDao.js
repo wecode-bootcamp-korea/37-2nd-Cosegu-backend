@@ -3,9 +3,11 @@ const {dataSource} = require('./data-source');
 const getLikesList = async (userId) => {
     const result = await dataSource.query(
         `SELECT
-            r.id as likeRecruitId,
+            r.id as recruitId,
             r.title,
-            r.description,
+            r.division,
+            r.region,
+            r.employment_type as employmentType,
             r.main_business,
             r.qualification,
             r.preferential_treatment
