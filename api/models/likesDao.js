@@ -5,7 +5,9 @@ const getLikesList = async (userId) => {
         `SELECT
             r.id as likeRecruitId,
             r.title,
-            r.description,
+            r.division,
+            r.region,
+            r.employment_type as employmentType,
             r.main_business,
             r.qualification,
             r.preferential_treatment

@@ -5,7 +5,7 @@ const likesRouter = require('./likesRouter');
 const faqRouter = require('./faqRouter');
 const careerRouter = require('./careerRouter');
 const applyRouter = require('./applyRouter');
-const faqRouter = require('./faqRouter');
+const mypageRouter = require('./mypageRouter');
 
 const router = express.Router();
 
