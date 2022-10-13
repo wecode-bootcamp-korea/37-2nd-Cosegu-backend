@@ -13,6 +13,19 @@ const checkCategory = async(categoryId) => {
     return result.does_exist;
 }
 
+const countCategory = async() => {
+    const result = dataSource.query(
+        `SELECT
+            c.name AS categoryName,
+            count(name) AS categoryCount
+        FROM recruits r
+        JOIN categories c on r.category_id = c.id
+        GROUP BY c.name;
+        `
+    )
+    return result;
+}
+
 const getRecruit = async (limit, offset) => {
 
     const result = await dataSource.query(
@@ -66,7 +79,6 @@ const getRecruitsByTagId = async(categoryId, tagName, limit, offset) => {
     } else {
         tagName.map(el => tmp += `${el}|`);
         tmp = tmp.slice(0,-1);
-        console.log(tmp)
     }
 
     const result = await dataSource.query(
@@ -98,15 +110,54 @@ const getRecruitsByTagId = async(categoryId, tagName, limit, offset) => {
             GROUP BY r.id
             LIMIT ${limit} OFFSET ${offset}
         )as a
-        WHERE a.tagName REGEXP ('${tmp}')
+        WHERE UPPER(a.tagName) REGEXP (UPPER('${tmp}'))
         `
     )
     return result
 }
 
+const searchRecruitList = async(input, limit, offset) => {
+    const result = await dataSource.query(
+        `SELECT
+            a.recruitId,
+            a.title,
+            a.description,
+            a.mainBusiness,
+            a.qualification,
+            a.preferentialTreatment,
+            a.categoryName,
+            a.tagName
+        FROM (
+            SELECT
+                r.id as recruitId,
+                r.title,
+                r.description,
+                r.main_business as mainBusiness,
+                r.qualification, 
+                r.preferential_treatment as preferentialTreatment,
+                c.name as categoryName,
+                JSON_ARRAYAGG(t.id) as tagId,
+                JSON_ARRAYAGG(t.name) as tagName
+            FROM recruits as r
+            INNER JOIN categories as c ON c.id = r.category_id
+            INNER JOIN recruits_tags as rt ON rt.recruit_id = r.id
+            INNER JOIN tags as t ON t.id = rt.tag_id
+            GROUP BY r.id
+            LIMIT ${limit} OFFSET ${offset}
+        )as a
+        WHERE UPPER(a.title) LIKE UPPER('%${input}%')
+        OR UPPER(a.tagName) LIKE UPPER('%${input}%')
+        `
+    )
+
+    return result;
+}
+
 module.exports = {
+    countCategory,
     getRecruit,
     checkCategory,
     getRecruitsByCategoryId,
-    getRecruitsByTagId
+    getRecruitsByTagId,
+    searchRecruitList
 }   

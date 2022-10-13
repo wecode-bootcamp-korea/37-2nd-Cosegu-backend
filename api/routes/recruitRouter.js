@@ -4,5 +4,7 @@ const { recruitController } = require('../controllers');
 const recruitRouter = express.Router();
 
 recruitRouter.get('', recruitController.getRecruit);
+recruitRouter.get('/category', recruitController.getCount);
+recruitRouter.get('/search', recruitController.searchRecruit);
 
 module.exports = recruitRouter;

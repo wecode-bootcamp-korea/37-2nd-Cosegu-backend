@@ -1,5 +1,9 @@
 const { recruitDao } = require('../models');
 
+const getCount = async() => {
+    return await recruitDao.countCategory();
+}
+
 const getRecruit = async(limit, offset) => {
     
     if (limit > 20) {
@@ -41,8 +45,21 @@ const getRecruitByTag = async(categoryId, tagName, limit, offset) => {
     return await recruitDao.getRecruitsByTagId(categoryId, tagName, limit, offset);
 }
 
+const searchRecruit = async(input, limit, offset) => {
+
+    if (limit > 20) {
+        const error = new Error('INVALID_REQUEST');
+        error.statusCode = 400;
+        throw error;
+    }
+
+    return await recruitDao.searchRecruitList(input, limit, offset)
+}
+
 module.exports = {
+    getCount,
     getRecruit,
     getRecruitByCategory,
-    getRecruitByTag
-}   
+    getRecruitByTag,
+    searchRecruit
+}

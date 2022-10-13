@@ -56,13 +56,34 @@ const updateCareer = async(userId, contents) => {
 }
 
 const deleteCareerById = async(careerId) => {
-    const result = await dataSource.query(
-        `DELETE FROM careers
-        WHERE id = ?
-        `, [careerId]
-    )
+    const queryRunner = dataSource.createQueryRunner();
 
-    return result;
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try{
+        await queryRunner.query(
+            `DELETE FROM applyments_careers
+            WHERE career_id = ?
+            `, [careerId]
+        )
+
+        await queryRunner.query(
+            `DELETE FROM careers
+            WHERE id = ?
+            `, [careerId]
+        )
+
+        await queryRunner.commitTransaction();
+    } catch (err) {
+        await queryRunner.rollbackTransaction();
+        const error = new Error(err.message);
+        error.statusCode = 400;
+        throw error;
+    } finally {
+        await queryRunner.release();
+    }
+    
 }
 
 module.exports = {

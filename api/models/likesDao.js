@@ -3,11 +3,12 @@ const {dataSource} = require('./data-source');
 const getLikesList = async (userId) => {
     const result = await dataSource.query(
         `SELECT
-            title,
-            description,
-            main_business,
-            qualification,
-            preferential_treatment
+            r.id as likeRecruitId,
+            r.title,
+            r.description,
+            r.main_business,
+            r.qualification,
+            r.preferential_treatment
         FROM likes as l
         INNER JOIN recruits as r ON l.recruit_id = r.id
         WHERE l.user_id = ?
