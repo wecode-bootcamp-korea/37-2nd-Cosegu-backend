@@ -4,6 +4,7 @@ const likesDao = require('./likesDao');
 const faqDao = require('./faqDao');
 const careerDao = require('./careerDao');
 const applyDao = require('./applyDao');
+const mypageDao = require('./mypageDao');
 
 module.exports = {
   userDao,
@@ -11,5 +12,6 @@ module.exports = {
   recruitDao,
   likesDao,
   careerDao,
-  applyDao
+  applyDao,
+  mypageDao,
 };
