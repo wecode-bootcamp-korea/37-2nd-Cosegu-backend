@@ -33,7 +33,7 @@ const signIn = async (code) => {
   );
 
   const userInfo = userInfoResponse.data.response;
-  const user = await userDao.checkUserId(userInfo.id);
+  let user = await userDao.checkUserId(userInfo.id);
 
   if (user === undefined) {
     const info = {
@@ -46,8 +46,9 @@ const signIn = async (code) => {
       birth: userInfo.birthyear + '-' + userInfo.birthday,
     };
 
-    userDao.registrateUser(info);
+    await userDao.registrateUser(info);
   }
+  user = await userDao.checkUserId(userInfo.id);
 
   const jwtToken = await jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
     algorithm: process.env.ALGORITHM,
