@@ -14,6 +14,7 @@ const checkCategory = async(categoryId) => {
 }
 
 const getRecruit = async (limit, offset) => {
+
     const result = await dataSource.query(
         `SELECT
             r.id,
