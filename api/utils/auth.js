@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
+const {asyncWrap} = require('./error');
 const { userService } = require('../services');
 
-const loginRequired = async (req, res, next) => {
+const loginRequired = asyncWrap(async (req, res, next) => {
   let accessToken = req.headers.authorization;
 
   if (!accessToken) {
@@ -23,7 +24,7 @@ const loginRequired = async (req, res, next) => {
 
   req.user = user;
   next();
-};
+});
 
 module.exports = {
   loginRequired,

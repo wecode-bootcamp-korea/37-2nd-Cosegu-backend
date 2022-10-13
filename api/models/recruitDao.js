@@ -30,9 +30,11 @@ const getRecruit = async (limit, offset) => {
 
     const result = await dataSource.query(
         `SELECT
-            r.id,
+            r.id as recruitId,
             r.title,
-            r.description,
+            r.division,
+            r.region,
+            r.employment_type as employmentType,
             r.main_business as mainBusiness,
             r.qualification, 
             r.preferential_treatment as preferentialTreatment,
@@ -53,7 +55,9 @@ const getRecruitsByCategoryId = async(categoryId, limit, offset) => {
         `SELECT
             r.id as recruitId,
             r.title,
-            r.description,
+            r.division,
+            r.region,
+            r.employment_type as employmentType,
             r.main_business as mainBusiness,
             r.qualification, 
             r.preferential_treatment as preferentialTreatment,
@@ -85,7 +89,9 @@ const getRecruitsByTagId = async(categoryId, tagName, limit, offset) => {
         `SELECT
             a.recruitId,
             a.title,
-            a.description,
+            a.division,
+            a.region,
+            a.employmentType
             a.mainBusiness,
             a.qualification,
             a.preferentialTreatment,
@@ -95,7 +101,9 @@ const getRecruitsByTagId = async(categoryId, tagName, limit, offset) => {
             SELECT
                 r.id as recruitId,
                 r.title,
-                r.description,
+                r.division,
+                r.region,
+                r.employment_type as employmentType,
                 r.main_business as mainBusiness,
                 r.qualification, 
                 r.preferential_treatment as preferentialTreatment,
@@ -116,12 +124,35 @@ const getRecruitsByTagId = async(categoryId, tagName, limit, offset) => {
     return result
 }
 
+const getRecruitDetail = async(recruitId) => {
+    const result = await dataSource.query(
+        `SELECT
+            r.id as recruitId,
+            r.title,
+            r.division,
+            r.region,
+            r.employment_type as employmentType,
+            r.main_business as mainBusiness,
+            r.qualification, 
+            r.preferential_treatment as preferentialTreatment,
+            c.name as categoryName
+        FROM recruits r
+        INNER JOIN categories as c ON c.id = r.category_id
+        INNER JOIN companies as com ON com.id = r.company_id
+        WHERE r.id = ?
+        `, [recruitId]
+    )
+    return result;
+}
+
 const searchRecruitList = async(input, limit, offset) => {
     const result = await dataSource.query(
         `SELECT
             a.recruitId,
             a.title,
-            a.description,
+            a.division,
+            a.region,
+            a.employmentType,
             a.mainBusiness,
             a.qualification,
             a.preferentialTreatment,
@@ -131,7 +162,9 @@ const searchRecruitList = async(input, limit, offset) => {
             SELECT
                 r.id as recruitId,
                 r.title,
-                r.description,
+                r.division,
+                r.region,
+                r.employment_type as employmentType,
                 r.main_business as mainBusiness,
                 r.qualification, 
                 r.preferential_treatment as preferentialTreatment,
@@ -159,5 +192,6 @@ module.exports = {
     checkCategory,
     getRecruitsByCategoryId,
     getRecruitsByTagId,
+    getRecruitDetail,
     searchRecruitList
 }   

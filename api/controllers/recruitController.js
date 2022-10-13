@@ -27,6 +27,19 @@ const getRecruit = asyncWrap(async(req, res) => {
     }
 })
 
+const getRecruitDetail = asyncWrap(async(req, res) => {
+    const {recruitId} = req.params;
+
+    if (!recruitId) {
+        const error = new Error('KEY_ERROR');
+        error.statusCode = 400;
+        throw error;
+    }
+
+    const recruitDetail = await recruitService.getRecruitDetail(+recruitId);
+    res.status(200).json({ recruitDetail })
+})
+
 const searchRecruit = asyncWrap(async(req, res) => {
     const {input, limit, offset} = req.query;
         console.log(input)
@@ -43,5 +56,6 @@ const searchRecruit = asyncWrap(async(req, res) => {
 module.exports = {
     getCount,
     getRecruit,
+    getRecruitDetail,
     searchRecruit
 }
