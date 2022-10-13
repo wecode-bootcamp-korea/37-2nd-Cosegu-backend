@@ -45,6 +45,10 @@ const getRecruitByTag = async(categoryId, tagName, limit, offset) => {
     return await recruitDao.getRecruitsByTagId(categoryId, tagName, limit, offset);
 }
 
+const getRecruitDetail = async(recruitId) => {
+    return await recruitDao.getRecruitDetail(recruitId);
+}
+
 const searchRecruit = async(input, limit, offset) => {
 
     if (limit > 20) {
@@ -61,5 +65,6 @@ module.exports = {
     getRecruit,
     getRecruitByCategory,
     getRecruitByTag,
+    getRecruitDetail,
     searchRecruit
 }

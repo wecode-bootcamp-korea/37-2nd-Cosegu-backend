@@ -19,9 +19,7 @@ const signIn = async (code) => {
       },
     }
   );
-  console.log(tokenResponse);
   const naverAccessToken = tokenResponse.data.access_token;
-  console.log(naverAccessToken);
 
   const userInfoResponse = await axios.get(
     'https://openapi.naver.com/v1/nid/me',

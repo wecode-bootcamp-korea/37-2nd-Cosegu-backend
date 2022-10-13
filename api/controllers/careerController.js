@@ -11,7 +11,7 @@ const getCareer = asyncWrap(async(req, res) => {
 const addCareer = asyncWrap(async(req, res) => {
     const userId = req.user.id;
     const {careers} = req.body;
-
+    console.log(careers)
     if (!careers) {
         const error = new Error('KEY_ERROR');
         error.statusCode = 400;
