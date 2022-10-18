@@ -42,7 +42,7 @@ const getRecruitDetail = asyncWrap(async(req, res) => {
 
 const searchRecruit = asyncWrap(async(req, res) => {
     const {input, limit, offset} = req.query;
-        console.log(input)
+    console.log(input)
     if (!input) {
         const error = new Error('KEY_ERROR');
         error.statusCode = 400;
